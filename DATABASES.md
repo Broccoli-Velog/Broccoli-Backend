@@ -1,0 +1,1 @@
+- mysql 실행 `mysql -u root -p 비밀번호`
