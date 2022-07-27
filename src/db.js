@@ -3,13 +3,13 @@ import mysql from 'mysql';
 const getPoolInstance = (MODE, DB_HOST, DB_ID, DB_NAME, DB_PW) => {
 
     return mysql.createPool({
-        host: "localhost",
-        user: process.env.DB_ID,
-        database: process.env.DB,
-        password: process.env.DB_PW,
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0,
+        host: DB_HOST,
+        user: DB_ID,
+        database: DB_NAME,
+        password: DB_PW,
+        // waitForConnections: true,
+        // connectionLimit: 10,
+        // queueLimit: 0,
     });
 
 }

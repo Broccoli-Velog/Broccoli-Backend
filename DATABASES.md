@@ -1,1 +1,2 @@
 - mysql 실행 `mysql -u root -p 비밀번호`
+- `alter user 'root'@'localhost' identified with mysql_native_password by '비밀번호'`;
