@@ -1,12 +1,12 @@
 ## 명세서
 
-| 경로 | 설명 | 요청 | 반환값 |
-| :-- | :---- | :---- | :----- |
-| POST /register | 회원가입 | { email, username, password } | 반환값의 기본 폼을 준수해서 미정 |
-| POST /login | 로그인 | { email, password } | " |
-| GET /note | 전체 게시글 보기 | `?`key=value`&`key=value | " |
-| POST /note | 게시글 작성 | { title, context, series? } | " |
-| GET /note/:title | 게시글 보기 | { } | " |
+| 경로 | 설명 | 요청 | 반환값 | 담당자 |
+| :-- | :---- | :---- | :----- | :-- |
+| POST /register | 회원가입 | { email, username, password } | 반환값의 기본 폼을 준수해서 미정 | |
+| POST /login | 로그인 | { email, password } | " | |
+| GET /note | 전체 게시글 보기 | `?`key=value`&`key=value | " | |
+| POST /note | 게시글 작성 | { title, context, series? } | " | |
+| GET /note/:title | 게시글 보기 | { } | " | |
 
 > 서버 단에서 일관된 `Form`을 쓰는 이유
 > - 성공/실패
