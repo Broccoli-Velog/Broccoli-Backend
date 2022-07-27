@@ -6,8 +6,6 @@ import noteRouter from './routes/routers/note.js';
 
 import { getPoolInstance, validatePoolConnection } from './db.js';
 
-console.log(process.env.PORT);
-
 const app = Express();
 
 const MODE = process.env.NODE_ENV;
@@ -20,15 +18,18 @@ const DB_PW = process.env.DB_PW;
 
 const pool = getPoolInstance(MODE, DB_HOST, DB_ID, DB_NAME, DB_PW);
 
-try {
+app.get('*', (req, res) => {
+    return res.json('hello')
+});
 
-    const isConnected = await validatePoolConnection(pool);
-    if (isConnected) {
-        app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
-    }
+app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
 
-} catch(err) {
-
-    console.log(err);
-
-}
+// @deprecated
+// try {
+//     const isConnected = await validatePoolConnection(pool);
+//     if (isConnected) {
+//         app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
+//     }
+// } catch(err) {
+//     console.log(err);
+// }

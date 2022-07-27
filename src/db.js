@@ -16,10 +16,12 @@ const getPoolInstance = (MODE, DB_HOST, DB_ID, DB_NAME, DB_PW) => {
 
 /**
  * 연결 성공 시 true, 실패시 false
+ * @deprecated
  * @param {*} pool 
  * @returns boolean
  */
 const validatePoolConnection = async (pool) => {
+
     
     try {
 
