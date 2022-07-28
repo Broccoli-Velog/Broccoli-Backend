@@ -30,9 +30,12 @@ CREATE TABLE `comment` (
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fk_post_id` int(11) NOT NULL,
+  `fk_user_id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `fk_to_post_idx` (`fk_post_id`),
-  CONSTRAINT `fk_to_post` FOREIGN KEY (`fk_post_id`) REFERENCES `post` (`post_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_to_user_idx` (`fk_user_id`),
+  CONSTRAINT `fk_to_post` FOREIGN KEY (`fk_post_id`) REFERENCES `post` (`post_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_to_user2` FOREIGN KEY (`fk_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-28 19:21:35
+-- Dump completed on 2022-07-28 19:46:17
