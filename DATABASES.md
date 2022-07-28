@@ -3,8 +3,8 @@
 - `GRANT ALL PRIVILEGES ON *.* TO "계정"@"%" IDENTIFIED BY "비밀번호"`  
 2. IP 대역 변경 
 - `vi /etc/mysql/mysql.conf.d/mysqld.cnf` mysqld.conf 파일 수정    
-- bind-address 주석 OR 0.0.0.0    
-- ![Uploading image.png…]()  
+- bind-address 주석 OR 0.0.0.0      
+![Uploading image.png…]()  
   
 3. 서비스 재시작 후 저장  
 `service mysql restart`    
