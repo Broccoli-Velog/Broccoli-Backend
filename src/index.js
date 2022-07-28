@@ -18,6 +18,9 @@ const DB_PW = process.env.DB_PW;
 
 const pool = getPoolInstance(MODE, DB_HOST, DB_ID, DB_NAME, DB_PW);
 
+app.use('/auth', authRouter);
+app.use('/note', noteRouter);
+
 app.get('*', (req, res) => {
     return res.json('hello')
 });
