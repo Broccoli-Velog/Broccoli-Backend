@@ -4,7 +4,7 @@ import Morgan from 'morgan';
 
 import authRouter from './routes/routers/auth.js';
 import noteRouter from './routes/routers/note.js';
-import JwtProvider from './modules/jwt.provider.js';
+import { JwtProvider } from './modules/_.loader.js';
 
 import { getPoolInstance, validatePoolConnection } from './db.js';
 
