@@ -4,8 +4,10 @@ import * as authController from "../controllers/auth.js";
 
 const authRouter = Router();
 
-authRouter.route('')
-    .get(authController.sample)
-    .post(authController.sample);
+authRouter.route('/register')
+    .post(authController.register);
+
+authRouter.route('/login')
+    .post(authController.login);
 
 export default authRouter;

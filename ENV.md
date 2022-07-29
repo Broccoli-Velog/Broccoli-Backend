@@ -11,4 +11,8 @@ DB_HOST = DB URL
 DB_ID = DB 계정 이름
 DB_NAME = DB 이름
 DB_PW = DB 비밀번호
+
+# jsonwebtoken
+
+JWT_SECRET = broccoli
 ```
