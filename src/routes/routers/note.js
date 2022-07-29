@@ -4,7 +4,7 @@ import * as noteController from "../controllers/note.js";
 
 const noteRouter = Router();
 
-authRotuer.route('')
+noteRouter.route('')
     .get(noteController.sample)
     .post(noteController.sample);
 

@@ -1,12 +1,12 @@
 import 'dotenv/config';
 import Express from 'express';
+import Morgan from 'morgan';
 
 import authRouter from './routes/routers/auth.js';
 import noteRouter from './routes/routers/note.js';
-
-import { getPoolInstance, validatePoolConnection } from './db.js';
-
-console.log(process.env.PORT);
+import commentRouter from "./routes/routers/comment.js";
+import { JwtProvider } from './modules/_.loader.js';
+import BcryptProvider from './modules/providers/bcrpyt.provider.js';
 
 const app = Express();
 
@@ -18,17 +18,34 @@ const DB_ID = process.env.DB_ID;
 const DB_NAME = process.env.DB_NAME;
 const DB_PW = process.env.DB_PW;
 
-const pool = getPoolInstance(MODE, DB_HOST, DB_ID, DB_NAME, DB_PW);
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_ALGORITHM = process.env.JWT_ALGORITHM;
+const BCRYPT_SALT = process.env.BCRYPT_SALT;
 
-try {
+JwtProvider.initialize(JWT_SECRET, JWT_ALGORITHM);
+BcryptProvider.initialize(BCRYPT_SALT);
 
-    const isConnected = await validatePoolConnection(pool);
-    if (isConnected) {
-        app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
-    }
+app.use(Morgan('dev'));
 
-} catch(err) {
+app.use(Express.json());
+app.use(Express.urlencoded({ extended: true }));
 
-    console.log(err);
+app.use('/auth', authRouter);
+app.use('/note', noteRouter);
+app.use('/comment', commentRouter);
 
-}
+app.get('*', (req, res) => {
+    return res.json('hello')
+});
+
+app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
+
+// @deprecated
+// try {
+//     const isConnected = await validatePoolConnection(pool);
+//     if (isConnected) {
+//         app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
+//     }
+// } catch(err) {
+//     console.log(err);
+// }
