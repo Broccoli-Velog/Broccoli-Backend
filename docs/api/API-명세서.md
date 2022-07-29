@@ -10,7 +10,9 @@
 
 | Method / Path | Request (body, query) | Response |
 | :------------ | :-------------------- | :------- |
-| GET /         | -                     | -        |
+| POST /note    | { title, context, series? } | - |
+| GET /note     | `?`key=value`&`key=value | - |
+| GET /note/:noteId |  | - |
 
 ## Comment
 
