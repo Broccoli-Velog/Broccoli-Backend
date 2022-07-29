@@ -14,7 +14,7 @@
 
 ## Comment
 
-| Method / Path                | Request (body, query)  | Response  |
-| :--------------------------- | :--------------------  | :-------  |
-| POST /create/:noteId         | - { content }          | -         |
-| DELETE /delete/:commentId    | -                      | -         |
+| Method / Path                        | Request (body, query)  | Response  |
+| :---------------------------         | :--------------------  | :-------  |
+| POST /comment/create/:noteId         | - { content }          | -         |
+| DELETE /comment/delete/:commentId    | -                      | -         |
