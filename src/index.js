@@ -7,8 +7,6 @@ import noteRouter from './routes/routers/note.js';
 import commentRouter from "./routes/routers/comment.js";
 import { JwtProvider } from './modules/_.loader.js';
 
-import { getPoolInstance, validatePoolConnection } from './db.js';
-
 const app = Express();
 
 const MODE = process.env.NODE_ENV;
@@ -21,8 +19,6 @@ const DB_PW = process.env.DB_PW;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 JwtProvider.initialize(JWT_SECRET);
-
-// const pool = getPoolInstance(MODE, DB_HOST, DB_ID, DB_NAME, DB_PW);
 
 app.use(Morgan('dev'));
 
