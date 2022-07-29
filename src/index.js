@@ -4,6 +4,7 @@ import Morgan from 'morgan';
 
 import authRouter from './routes/routers/auth.js';
 import noteRouter from './routes/routers/note.js';
+import commentRouter from "./routes/routers/comment.js";
 import { JwtProvider } from './modules/_.loader.js';
 
 import { getPoolInstance, validatePoolConnection } from './db.js';
@@ -21,7 +22,7 @@ const DB_PW = process.env.DB_PW;
 const JWT_SECRET = process.env.JWT_SECRET;
 JwtProvider.initialize(JWT_SECRET);
 
-const pool = getPoolInstance(MODE, DB_HOST, DB_ID, DB_NAME, DB_PW);
+// const pool = getPoolInstance(MODE, DB_HOST, DB_ID, DB_NAME, DB_PW);
 
 app.use(Morgan('dev'));
 
@@ -30,6 +31,7 @@ app.use(Express.urlencoded({ extended: true }));
 
 app.use('/auth', authRouter);
 app.use('/note', noteRouter);
+app.use('/comment', commentRouter);
 
 app.get('*', (req, res) => {
     return res.json('hello')
