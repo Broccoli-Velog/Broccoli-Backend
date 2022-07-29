@@ -4,21 +4,21 @@ import jwt from "jsonwebtoken";
 class JwtProvider {
 
     static SECRET;
-    static JWT_ALGORITHM;
+    static ALGORITHM;
 
     constructor() {}
 
     static initialize(JWT_SECRET, JWT_ALGORITHM) {
 
         this.SECRET = JWT_SECRET;
-        this.JWT_ALGORITHM = JWT_ALGORITHM;
+        this.ALGORITHM = JWT_ALGORITHM;
         
     }
 
     sign(payload) {
 
         return jwt.sign(payload, JwtProvider.SECRET, {
-            algorithm: JwtProvider.JWT_ALGORITHM
+            algorithm: JwtProvider.ALGORITHM
         });
 
     }
