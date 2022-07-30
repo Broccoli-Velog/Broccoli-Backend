@@ -14,5 +14,10 @@ DB_PW = DB 비밀번호
 
 # jsonwebtoken
 
-JWT_SECRET = broccoli
+JWT_SECRET = 암호화 토큰 값
+JWT_ALGORITHM = 암호화 방식
+
+# bcrpyt
+
+BCRYPT_SALT = 암호화 횟수
 ```

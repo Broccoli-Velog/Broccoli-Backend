@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import Express from 'express';
+import Cors from 'cors';
 import Morgan from 'morgan';
 
 import authRouter from './routes/routers/auth.js';
@@ -26,6 +27,7 @@ JwtProvider.initialize(JWT_SECRET, JWT_ALGORITHM);
 BcryptProvider.initialize(BCRYPT_SALT);
 
 app.use(Morgan('dev'));
+app.use(Cors());
 
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
