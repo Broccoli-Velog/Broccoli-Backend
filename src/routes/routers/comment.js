@@ -8,5 +8,7 @@ commentRouter.route('/create/:noteId')
     .post(commentController.commentCreate);
 commentRouter.route("/delete/:commentId")
     .delete(commentController.commentDelete);
+commentRouter.route("/update/:commentId")
+    .put(commentController.commentUpdate);
 
 export default commentRouter;
