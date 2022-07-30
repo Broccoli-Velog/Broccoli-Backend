@@ -4,8 +4,8 @@ import * as noteController from "../controllers/note.js";
 
 const noteRouter = Router();
 
-noteRouter.route('')
-    .get(noteController.sample)
-    .post(noteController.sample);
+noteRouter.route('/')
+    .post(noteController.noteCreate)
+    .get(noteController.noteView);
 
 export default noteRouter;
