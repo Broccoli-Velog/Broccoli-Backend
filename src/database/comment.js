@@ -1,4 +1,4 @@
-import db from "./index.js";
+import db from './index.js';
 
 const searchUserQuery = async (nickname) => {
     const [ sql ] = await db.query(`
@@ -16,7 +16,7 @@ const createCommentQuery = async (content, fk_post_id, fk_user_id) => {
             ("${content}", ${fk_post_id}, ${fk_user_id})
     `);
     return sql;
-}
+};
 
 const searchCommentQuery = async (comment_id) => {
     const [ sql ] = await db.query(`
@@ -24,7 +24,7 @@ const searchCommentQuery = async (comment_id) => {
         WHERE C.comment_id = ${comment_id}
     `);
     return sql;
-}
+};
 
 const deleteCommentQuery = async (comment_id) => {
     const [ sql ] = await db.query(`
@@ -32,7 +32,7 @@ const deleteCommentQuery = async (comment_id) => {
         WHERE C.comment_id = ${comment_id}
     `);
     return sql;
-}
+};
 
 const updateCommentQuery = async (comment_id, content) => {
     const [ sql ] = await db.query(`
@@ -41,7 +41,7 @@ const updateCommentQuery = async (comment_id, content) => {
         WHERE comment_id = ${comment_id}
     `);
     return sql;
-}
+};
 
 const query = async () => {
     const [ sql ] = await db.query(`
@@ -55,7 +55,7 @@ const query = async () => {
 	ON U.user_id = C.fk_user_id;
     `);
     return sql;
-}
+};
 
 export {
     searchUserQuery,
@@ -64,4 +64,4 @@ export {
     updateCommentQuery,
     deleteCommentQuery,
     query,
-}
+};

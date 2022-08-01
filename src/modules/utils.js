@@ -6,9 +6,9 @@ const createJson = (Boolean, message, queryResult, token) => {
             queryResult,
             token,
         } 
-    }
-}
+    };
+};
 
 export {
     createJson,
-}
+};
