@@ -11,6 +11,8 @@ DB_HOST = IPv4 경로
 DB_ID = DB 계정 이름
 DB_NAME = DB 이름
 DB_PW = DB 비밀번호
+DB_WAIT_FOR_CONNECTION = true
+DB_CONNECTION_LIMIT = 10
 
 # jsonwebtoken
 
