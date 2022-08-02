@@ -1,4 +1,5 @@
-import Bcrypt from 'bcrypt';
+import Bcrypt from "bcrypt";
+import { BcryptEnv } from "../../models/_.loader.js";
 
 
 class BcryptProvider {
@@ -7,8 +8,9 @@ class BcryptProvider {
     
     constructor() {}
 
-    static initialize(SALT) {
-        this.SALT = +SALT;
+    /** @param { BcryptEnv } bcryptEnv */
+    static initialize(bcryptEnv) {
+        this.SALT = bcryptEnv.SALT;
     }
 
     /**
