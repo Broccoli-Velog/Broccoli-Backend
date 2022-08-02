@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-
+import { JwtEnv } from "../../models/_.loader.js";
 
 class JwtProvider {
 
@@ -8,10 +8,11 @@ class JwtProvider {
 
     constructor() {}
 
-    static initialize(JWT_SECRET, JWT_ALGORITHM) {
+    /** @param { JwtEnv } jwtEnv */
+    static initialize(jwtEnv) {
 
-        this.SECRET = JWT_SECRET;
-        this.ALGORITHM = JWT_ALGORITHM;
+        this.SECRET = jwtEnv.SECRET;
+        this.ALGORITHM = jwtEnv.ALGORITHM;
         
     }
 

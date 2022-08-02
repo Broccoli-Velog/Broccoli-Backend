@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 import Jwt from 'jsonwebtoken';
-import { JwtProvider, BcryptProvider } from "../../modules/_.loader.js";
+import { JwtProvider, BcryptProvider, DatabaseProvider } from "../../modules/_.loader.js";
 import { UserJoi, UserModel } from "../../models/_.loader.js";
 
 import db from "../../database/index.js";
