@@ -1,8 +1,17 @@
 import mysql from 'mysql2/promise';
 import { DatabaseEnv } from '../../models/_.loader.js';
 
+/**
+ * '데이터 베이스' 공급자 클래스입니다.
+ * 
+ * @property { mysql.Pool } pool
+ * @property { function } initialize
+ * @property { function } validateConnection
+ * @method getConnection
+ */
 class DatabaseProvider {
 
+    /** @type { mysql.Pool } */
     static pool;
 
     /** @param { DatabaseEnv } databaseEnv @returns */
@@ -23,13 +32,7 @@ class DatabaseProvider {
 
     }
 
-    static getPoolInstnace() {
-
-        return this.pool;
-
-    }
-
-        /** @returns { Promise<void> } @throws { BadDatabaseConnection } */
+    /** @returns { Promise<void> } @throws { BadDatabaseConnection } */
     static async validateConnection() {
 
         try {
