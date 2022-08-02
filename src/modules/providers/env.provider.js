@@ -1,7 +1,15 @@
 import { Env } from "../../models/_.loader.js";
 
+/**
+ * `환경변수` 공급자 클래스입니다.
+ * 
+ * @property { Env } env
+ * @property { function } getEnvInstance
+ * @property { function } validateEnvInstance
+ */
 class EnvProvider {
 
+    /** @type { Env } */
     static env;
 
     constructor() {}

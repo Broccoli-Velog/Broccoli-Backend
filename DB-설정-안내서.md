@@ -1,3 +1,9 @@
+# Local
+
+Local 에 `mysql@8.0.27` 을 설치해주세요.
+
+# AWS
+
 ## ubuntu MySQL 외부 접속 설정
 1. 허용 IP 설정
 - `GRANT ALL PRIVILEGES ON *.* TO "계정"@"%" IDENTIFIED BY "비밀번호"`  
