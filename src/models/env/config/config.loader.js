@@ -1,8 +1,11 @@
 import dotenv from 'dotenv';
 
+const MODE = process.env.NODE_ENV;
+
 const parsed = dotenv.config({
-    path: '.env.dev'
+    path: MODE === 'dev' ? '.env.dev' : '.env.prod'
 }).parsed;
-parsed.NODE_ENV = process.env.NODE_ENV;
+
+parsed.NODE_ENV = MODE;
 
 export default parsed;
