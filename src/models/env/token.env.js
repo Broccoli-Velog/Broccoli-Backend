@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import configLoader from './config/config.loader.js';
 import { classIterator } from '../_.loader.js';
 
 /**
@@ -21,8 +21,8 @@ class JwtEnv {
 
     constructor() {
 
-        this.SECRET = process.env.JWT_SECRET;
-        this.ALGORITHM = process.env.JWT_ALGORITHM;
+        this.SECRET = configLoader.JWT_SECRET;
+        this.ALGORITHM = configLoader.JWT_ALGORITHM;
 
         this[Symbol.iterator] = classIterator;
         

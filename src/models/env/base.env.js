@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import configLoader from './config/config.loader.js';
 import { classIterator } from '../_.loader.js';
 
 /**
@@ -24,8 +24,8 @@ class BaseEnv {
      * @param { string } MODE 
      */
     constructor() {
-        this.MODE = process.env.NODE_ENV;
-        this.PORT = +process.env.PORT;
+        this.MODE = configLoader.NODE_ENV;
+        this.PORT = +configLoader.PORT;
         this[Symbol.iterator] = classIterator;
     }
     

@@ -7,6 +7,7 @@ export default (() => {
 
     const env = EnvProvider.getEnvInstance();
 
+
     JwtProvider.initialize(env.jwtEnv);
     BcryptProvider.initialize(env.bcryptEnv);
     DatabaseProvider.initialize(env.databaseEnv);

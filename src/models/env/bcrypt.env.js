@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import dotenv from './config/config.loader.js';
 import { classIterator } from '../_.loader.js';
 
 /**
@@ -16,7 +16,7 @@ class BcryptEnv {
     [Symbol.iterator];
 
     constructor() {
-        this.SALT = +process.env.BCRYPT_SALT;
+        this.SALT = +dotenv.BCRYPT_SALT;
         this[Symbol.iterator] = classIterator;
     }
 

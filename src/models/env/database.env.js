@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import configLoader from './config/config.loader.js';
 import { classIterator } from '../_.loader.js';
 
 /**
@@ -37,12 +37,12 @@ class DatabaseEnv {
 
     constructor() {
 
-        this.HOST = process.env.DB_HOST;
-        this.ID = process.env.DB_ID;
-        this.NAME = process.env.DB_NAME;
-        this.PW = process.env.DB_PW;
-        this.WAIT_FOR_CONNECTION = process.env.DB_WAIT_FOR_CONNECTION;
-        this.CONNECTION_LIMIT = process.env.DB_CONNECTION_LIMIT;
+        this.HOST = configLoader.DB_HOST;
+        this.ID = configLoader.DB_ID;
+        this.NAME = configLoader.DB_NAME;
+        this.PW = configLoader.DB_PW;
+        this.WAIT_FOR_CONNECTION = configLoader.DB_WAIT_FOR_CONNECTION;
+        this.CONNECTION_LIMIT = configLoader.DB_CONNECTION_LIMIT;
 
         this[Symbol.iterator] = classIterator;
         
