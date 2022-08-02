@@ -23,7 +23,7 @@ const register = async (req, res, next) => {
         
         const bcryptProvider = new BcryptProvider();
 
-        const hahedPassword = await bcryptProvider.hashPassword(userModel.password)
+        const hashedPassword = await bcryptProvider.hashPassword(userModel.password)
 
         const IS_EXISTS = `SELECT
                                 (CASE
@@ -40,7 +40,7 @@ const register = async (req, res, next) => {
 
         } else {
 
-            const INSERT = `INSERT INTO user (email, nickname, password) VALUES ('${email}', '${nickname}', '${hahedPassword}');`;
+            const INSERT = `INSERT INTO user (email, nickname, password) VALUES ('${email}', '${nickname}', '${hashedPassword}');`;
 
             const [ ResultSetHeader ] = await db.query(INSERT);
             return res.status(201).json(utils.createJson(true, '회원가입에 성공하였습니다.', {
@@ -59,7 +59,7 @@ const register = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-
+    
     const { email, password } = req.body;
 
     try {
@@ -77,8 +77,8 @@ const login = async (req, res, next) => {
         if (!Result)
             return res.status(404).json(utils.createJson(false, '존해하지 않는 사용자입니다.', { email }));
 
-        const bcrpytProvider = new BcryptProvider();
-        const isCorrectPassword = await bcrpytProvider.isCorrectPassword(password, Result.password);
+        const bcryptProvider = new BcryptProvider();
+        const isCorrectPassword = await bcryptProvider.isCorrectPassword(password, Result.password);
         if (!isCorrectPassword)
             return res.status(400).json(utils.createJson(false, '비밀번호가 일치하지 않습니다.', { email }));
         
@@ -90,7 +90,6 @@ const login = async (req, res, next) => {
     } catch(err) {
 
         return res.status(400).json(utils.createJson(false, `${err.name} : ${err.message}`));
-
     }
 
 

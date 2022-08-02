@@ -7,7 +7,7 @@ import authRouter from './routes/routers/auth.js';
 import noteRouter from './routes/routers/note.js';
 import commentRouter from "./routes/routers/comment.js";
 import { JwtProvider } from './modules/_.loader.js';
-import BcryptProvider from './modules/providers/bcrpyt.provider.js';
+import BcryptProvider from './modules/providers/bcrypt.provider.js';
 
 const app = Express();
 
