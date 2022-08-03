@@ -2,10 +2,13 @@
 
 ## User
 
-| Method / Path         | Request (body, query) | Response |
-| :-------------------- | :-------------------- | :------- |
-| POST /auth/register   | { email, nickname, password } | 하단 참고 |
-| POST /auth/login      | { email, password } | 하단 참고 |
+| Method / Path         | Request (body, query) | Response | INFO       |
+| :-------------------- | :-------------------- | :------- | :--------  |
+| GET   /auth           | -                     | 하단 참고 | 내 정보보기 |
+| PATCH /auth           | { nickname }          | 하단 참고 | 내 닉네임 수정 |
+| DELETE /auth          | { password }          | 하단 참고 | 내 계정 탈퇴 |
+| POST /auth/register   | { email, nickname, password } | 하단 참고 | 회원가입 |
+| POST /auth/login      | { email, password } | 하단 참고 | 로그인 |
 
 [API auth 명세서 자세히 보기](./API-auth-%EB%AA%85%EC%84%B8%EC%84%9C.md)
 
