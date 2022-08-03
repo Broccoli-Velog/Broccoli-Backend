@@ -7,76 +7,7 @@
 | POST /auth/register   | { email, nickname, password } | 하단 참고 |
 | POST /auth/login      | { email, password } | 하단 참고 |
 
-### post /auth/register
-
-```json
-// 201 Created, 회원가입에 성공
-{
-    "isSuccess": true,
-    "message": "회원가입에 성공하였습니다.",
-    "result": {
-        "email": "입력한 이메일",
-        "nickname": "입력한 닉네임"
-    }
-}
-
-// 400 Bad Request, 타입 및 범위가 잘못된 경우 - 회원가입에 실패
-{
-    "isSuccess": false,
-    "message": "실패한 내용에 대한 문자열이 영문으로 적혀집니다.",
-    "result": {}
-}
-
-// 403 Conflict, 중복된 유저 - 회원가입에 실패
-{
-    "isSuccess": false,
-    "message": "이메일 및 닉네임이 중복된 사용자가 존재합니다.",
-    "result": {
-        "email": "입력한 이메일",
-        "nickname": "입력한 닉네임"
-    }
-}
-```
-
-### post /auth/login
-
-```json
-// 201 Created, 로그인에 성공
-{
-    "isSuccess": true,
-    "message": "로그인에 성공하셨습니다.",
-    "result": {
-        "email": "입력한 이메일",
-        "nickname": "이메일에 일치하는 사용자의 닉네임"
-    },
-    "token": "JWT 토큰"
-}
-
-// 400 Bad Request, 비밀번호가 틀린 경우 - 로그인 실패
-{
-    "isSuccess": true,
-    "message": "비밀번호가 일치하지 않습니다.",
-    "result": {
-        "email": "입력한 이메일"
-    }
-}
-
-// 400 Bad Request, 타입 및 범위가 잘못된 경우 - 로그인 실패
-{
-    "isSuccess": false,
-    "message": "실패한 내용에 대한 문자열이 영문으로 적혀집니다.",
-    "result": {}
-}
-
-// 404 Not Found, 존재하지 않는 유저 - 로그인 실패
-{
-    "isSuccess": false,
-    "message": "존해하지 않는 사용자입니다.",
-    "result": {
-        "email": "입력한 이메일"
-    }
-}
-```
+[API auth 명세서 자세히 보기](./API-auth-%EB%AA%85%EC%84%B8%EC%84%9C.md)
 
 ## Note
 
@@ -88,7 +19,13 @@
 
 ## Comment
 
-| Method / Path                        | Request (body, query)  | Response  |
-| :---------------------------         | :--------------------  | :-------  |
-| POST /comment/create/:noteId         | - { content }          | -         |
-| DELETE /comment/delete/:commentId    | -                      | -         |
+> comment 는 req.headers.authorization 에 `Bearer 토큰` 의 형태가 항상 제공되어야 합니다.
+> 요청을 보낼 때, 해당 헤더에 `Baerer ` + `JWT 토큰 값` 의 형태의 문자열을 추가해주세요.
+>
+> 토큰의 `누락` 및 `유효하지 않은(타 발행자) 등` 의 경우에는 []() 처럼 반환값이 전달됩니다.
+
+| Method / Path            | Request (body, query)  | Response  |
+| :----------------------- | :--------------------  | :-------  |
+| POST /comment            | { noteId, content }    | -         |
+| PUT  /comment/:commentId | { commentId, content } |           |
+| DEL  /comment/:commentId | { commentId }          |           | 

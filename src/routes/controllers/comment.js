@@ -136,7 +136,7 @@ const putComment = async (req, res, next) => {
         const [ [ { is_exists } ] ] = await connection.query(IS_EXISTS);
 
         if (Boolean(!is_exists))
-            return res.status(403).json(
+            return res.status(404).json(
                 utils.createJson(false, "존재하지 않는 사용자입니다."));
 
         const SELECT_COMMENT_BY_COMMENTID = `SELECT fk_user_id as fkUserId FROM comment WHERE comment_id = ${commentId};`;
@@ -147,7 +147,7 @@ const putComment = async (req, res, next) => {
                 utils.createJson(false, '존재하지 않는 댓글입니다.'));
                 
         if (Result[0].fkUserId !== userId)
-            return res.status(403).json(
+            return res.status(401).json(
                 utils.createJson(false, '해당 댓글의 수정 권한이 없는 사용자입니다.'));
         
         const UPDATE_COMMENT = `UPDATE comment SET content = "${content}" WHERE comment_id = ${commentId};`;
