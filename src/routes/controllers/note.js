@@ -8,10 +8,8 @@ import * as utils from "../../modules/utils.js";
 
 
 const postNote = async (req, res, next) => {
- 
+    
     try {
-        const jwt = new JwtProvider().decodeToken(req.header.authorization)
-        const jwttoken = req.header.authorization;
 
         const noteDto = await Joi.object({
             title : Joi.string().min(1).max(50).required(),
