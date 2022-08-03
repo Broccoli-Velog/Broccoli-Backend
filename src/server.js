@@ -5,6 +5,7 @@ import Morgan from "morgan";
 import authRouter from "./routes/routers/auth.js";
 import noteRouter from "./routes/routers/note.js";
 import commentRouter from "./routes/routers/comment.js";
+import userRouter from "./routes/routers/user.js";
 import { BaseEnv } from "./models/_.loader.js";
 
 class App {
