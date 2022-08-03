@@ -56,7 +56,7 @@ const getNote = async (req, res, next) => {
 
 const getNoteByNoteId = async (req, res, next) => {
 
-    const { noteId } = req.params;
+    //const { noteId } = req.params;
 
     try {
         const noteDto = await Joi.object({
