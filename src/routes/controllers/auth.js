@@ -75,7 +75,7 @@ const login = async (req, res, next) => {
 
         const [ [ Result ] ] = await connection.query(FIND);
         if (!Result)
-            return res.status(404).json(utils.createJson(false, "존해하지 않는 사용자입니다.", { email }));
+            return res.status(404).json(utils.createJson(false, "존재하지 않는 사용자입니다.", { email }));
 
         const bcryptProvider = new BcryptProvider();
         const isCorrectPassword = await bcryptProvider.isCorrectPassword(password, Result.password);
