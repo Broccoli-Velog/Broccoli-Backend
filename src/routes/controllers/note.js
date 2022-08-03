@@ -1,20 +1,30 @@
 import Joi from "joi";
 import Express from 'express';
 
-import * as noteQuery from "../../database/note.js";
+import { JwtProvider, BcryptProvider, DatabaseProvider } from "../../modules/_.loader.js";
 import * as utils from "../../modules/utils.js";
+
+
 
 
 const postNote = async (req, res, next) => {
  
     try {
+        const jwt = new JwtProvider().decodeToken(req.header.authorization)
+        const jwttoken = req.header.authorization;
 
         const noteDto = await Joi.object({
             title : Joi.string().min(1).max(50).required(),
             content : Joi.string().min(1).max(255).required()
         }).validateAsync({ ...req.body });
 
-        const note = await noteQuery.postNoteQuery(noteDto);
+        const db = await new DatabaseProvider().getConnection();
+        const note = await db.query(`
+            INSERT INTO note
+                (title, content, image, fk_user_id)
+                VALUES
+                ("${noteDto.title}", "${noteDto.content}", ${image}, "${userId}" );
+        `);
         return res.status(201).json(
             utils.createJson(true, 'note 작성이 완료되었습니다', note));
     
@@ -31,7 +41,10 @@ const getNote = async (req, res, next) => {
 
     try {
 
-        const note = await noteQuery.getNoteQuery();
+        const db = await new DatabaseProvider().getConnection();
+        const note = await db.query(`
+            SELECT * FROM note
+        `);
         return note;
 
     } catch {
@@ -48,7 +61,12 @@ const getNoteByNoteId = async (req, res, next) => {
     const { noteId } = req.params;
 
     try {
-        const note = await noteQuery.getNoteByNoteIdQuery();
+
+        const db = await new DatabaseProvider().getConnection();
+        const note = await db.query(`
+            SELECT * FROM note N
+            WHERE N.note_id = ${note_id}
+        `);
 
         if (note.length)
             return res.status(200).json(
