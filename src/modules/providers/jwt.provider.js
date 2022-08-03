@@ -73,8 +73,15 @@ class JwtProvider {
 
     }
 
+    /**
+     * Bearer jsonwebtoken
+     * @param { string } bearerToken 
+     */
+     extract(bearerToken) {
 
-    
+        return bearerToken.substring(7);
+        
+    }
 
 }
 

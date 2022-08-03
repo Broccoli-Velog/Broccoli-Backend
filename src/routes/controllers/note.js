@@ -4,9 +4,6 @@ import Express from 'express';
 import { JwtProvider, BcryptProvider, DatabaseProvider } from "../../modules/_.loader.js";
 import * as utils from "../../modules/utils.js";
 
-
-
-
 const postNote = async (req, res, next) => {
     
     try {
