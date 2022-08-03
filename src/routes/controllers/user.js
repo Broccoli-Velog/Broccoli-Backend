@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-import { DatabaseProvider  } from "../../modules/_.loader";
+import { DatabaseProvider } from "../../modules/_.loader.js";
 
 import * as utils from "../../modules/utils.js";
 
