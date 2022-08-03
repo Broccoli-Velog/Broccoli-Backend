@@ -1,8 +1,8 @@
-import mysql from 'mysql2/promise';
-import { DatabaseEnv } from '../../models/_.loader.js';
+import mysql from "mysql2/promise";
+import { DatabaseEnv } from "../../models/_.loader.js";
 
 /**
- * '데이터 베이스' 공급자 클래스입니다.
+ * `데이터 베이스` 공급자 클래스입니다.
  * 
  * @property { mysql.Pool } pool
  * @property { function } initialize
