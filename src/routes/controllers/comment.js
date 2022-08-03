@@ -3,11 +3,7 @@ import Joi from "joi";
 import { JwtProvider, DatabaseProvider } from "../../modules/_.loader.js";
 import { CommentJoi } from "../../models/_.loader.js";
 
-import * as commentQuery from "../../database/comment.js";
 import * as utils from "../../modules/utils.js";
-
-
-const nickname = "관리자";
 
 const createComment = async (req, res, next) => {
 
@@ -158,10 +154,6 @@ const putComment = async (req, res, next) => {
                 return res.status(200).json(
                     utils.createJson(true, '댓글이 수정되었습니다.', { userId, commentId, content }));
 
-        // if (!commentId || content.length <= 0) return res.status(404).json(utils.createJson(false, "CommentId is not found"));
-        // const [ comment ] = await commentQuery.searchCommentQuery(commentId); // comment 작성자 { fk_user_id:  }
-        // if (userId !== comment.fk_user_id) return res.status(404).json(utils.createJson(false, "Not your comment"));
-        // const update = await commentQuery.updateCommentQuery(commentId, content);
         return res.status(200).json(utils.createJson(true, "Comment update success", update));
 
     } catch (err) {
