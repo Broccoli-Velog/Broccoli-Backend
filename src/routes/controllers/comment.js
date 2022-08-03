@@ -5,6 +5,8 @@ import { CommentJoi } from "../../models/_.loader.js";
 
 import * as utils from "../../modules/utils.js";
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const createComment = async (req, res, next) => {
 
     const { userId, noteId, content } = req.body;
@@ -51,6 +53,8 @@ const createComment = async (req, res, next) => {
     }
 };
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const deleteComment = async (req, res, next) => {
 
     const {
@@ -105,6 +109,8 @@ const deleteComment = async (req, res, next) => {
     }
 }
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const putComment = async (req, res, next) => {
 
     const {

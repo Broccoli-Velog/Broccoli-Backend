@@ -5,6 +5,7 @@ import { UserJoi, UserModel } from "../../models/_.loader.js";
 
 import * as utils from "../../modules/utils.js";
 
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const register = async (req, res, next) => {
 
     const { email, nickname, password } = req.body;
@@ -56,6 +57,7 @@ const register = async (req, res, next) => {
 
 };
 
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const login = async (req, res, next) => {
     
     const { email, password } = req.body;
