@@ -12,7 +12,6 @@ const register = async (req, res, next) => {
     try {
 
         const userModel = await Joi.object({
-
             email: UserJoi.email.required(),
             nickname: UserJoi.nickname.required(),
             password: UserJoi.password.required()
@@ -70,7 +69,7 @@ const login = async (req, res, next) => {
 
         }).validateAsync({ email, password });
 
-        const FIND = `SELECT nickname, password FROM user WHERE email = "${email}" LIMIT 1;`;
+        const FIND = `SELECT user_id as userId, nickname, password FROM user WHERE email = "${email}" LIMIT 1;`;
         
         const connection = await new DatabaseProvider().getConnection();
 
@@ -84,7 +83,7 @@ const login = async (req, res, next) => {
             return res.status(400).json(utils.createJson(false, "비밀번호가 일치하지 않습니다.", { email }));
         
         const jwtProvider = new JwtProvider();
-        const token = jwtProvider.sign({ nickname: Result.nickname });
+        const token = jwtProvider.sign({ userId: Result.userId, nickname: Result.nickname });
 
         return res.status(201).json(utils.createJson(true, "로그인에 성공하셨습니다.", { email, nickname: Result.nickname }, token ));
 
