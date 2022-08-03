@@ -24,6 +24,8 @@
 >
 > 토큰의 `누락` 및 `유효하지 않은(타 발행자) 등` 의 경우에는 []() 처럼 반환값이 전달됩니다.
 
+[API comment 명세서 자세히 보기](./API-comment-%EB%AA%85%EC%84%B8%EC%84%9C.md)
+
 | Method / Path            | Request (body, query)  | Response  |
 | :----------------------- | :--------------------  | :-------  |
 | POST /comment            | { noteId, content }    | -         |
