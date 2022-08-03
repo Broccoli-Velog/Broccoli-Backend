@@ -10,15 +10,16 @@ const postNote = async (req, res, next) => {
 
         const noteDto = await Joi.object({
             title : Joi.string().min(1).max(50).required(),
-            content : Joi.string().min(1).max(255).required()
+            content : Joi.string().min(1).max(255).required(),
+            userId : Joi.number().required()
         }).validateAsync({ ...req.body });
 
         const db = await new DatabaseProvider().getConnection();
         const note = await db.query(`
             INSERT INTO note
-                (title, content, image, fk_user_id)
+                (title, content, fk_user_id)
                 VALUES
-                ("${noteDto.title}", "${noteDto.content}", ${image}, "${userId}" );
+                ("${noteDto.title}", "${noteDto.content}", ${noteDto.userId} );
         `);
         return res.status(201).json(
             utils.createJson(true, 'note 작성이 완료되었습니다', note));
