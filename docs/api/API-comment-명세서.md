@@ -16,10 +16,12 @@
     "isSuccess": true,
     "message": "게시글 작성에 성공하셨습니다.",
     "result": {
-        "userId": "토큰의 페이로드 내부에 있는 값",
-        "commentId": "생성된 댓글의 commentId",
-        "noteId": "입력한 게시글Id",
-        "content": "입력한 댓글 내용"
+        "queryResult": {
+            "userId": "토큰의 페이로드 내부에 있는 값",
+            "commentId": "생성된 댓글의 commentId",
+            "noteId": "입력한 게시글Id",
+            "content": "입력한 댓글 내용"
+        }
     }
 }
 
@@ -61,9 +63,11 @@
     "isSuccess": true,
     "message": "댓글이 수정되었습니다.",
     "result": {
-        "userId": "토큰의 페이로드 내부에 있는 값",
-        "commentId": "수정하려는 댓글의 commentId 으로, /comment/:commentId 형태",
-        "content": "입력한 댓글 내용"
+        "queryResult": {
+            "userId": "토큰의 페이로드 내부에 있는 값",
+            "commentId": "수정하려는 댓글의 commentId 으로, /comment/:commentId 형태",
+            "content": "입력한 댓글 내용"
+        }
     }
 }
 
@@ -158,6 +162,7 @@
 }
 
 // 400, Bad Request
+// 500, Unkown ServerError
 // 백앤드 내부에 발생한 에러일 확률이 높습니다.
 {
     "isSuccess": false,
