@@ -1,13 +1,14 @@
 import { Router } from "express";
 
-import * as noteController from "../controllers/note.js";
+import { tokenGuard } from "../../modules/_.loader.js"
+import { NoteController } from "../controllers/_.export.js";
 
 const noteRouter = Router();
 
 noteRouter.route('')
-    .get(noteController.getNote)
-    .post(noteController.postNote);
+    .get(NoteController.getNote)
+    .post(tokenGuard, NoteController.postNote);
 noteRouter.route('/:noteId')
-    .get(noteController.getNoteByNoteId)
+    .get(NoteController.getNoteByNoteId)
 
 export default noteRouter;

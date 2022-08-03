@@ -3,12 +3,10 @@ import Joi from "joi";
 import { JwtProvider, DatabaseProvider } from "../../modules/_.loader.js";
 import { CommentJoi } from "../../models/_.loader.js";
 
-import * as commentQuery from "../../database/comment.js";
 import * as utils from "../../modules/utils.js";
 
 
-const nickname = "관리자";
-
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const createComment = async (req, res, next) => {
 
     const { userId, noteId, content } = req.body;
@@ -20,8 +18,6 @@ const createComment = async (req, res, next) => {
             noteId: CommentJoi.noteId.required(),
             content: CommentJoi.content.required()
         }).validateAsync({ userId, noteId, content });
-
-        // if (!nickname || !noteId || content.length === 0) return res.status(404).json(utils.createJson(false, 'Request userId or body is not found'));
 
         const IS_EXISTS = `SELECT
                                 (CASE
@@ -37,7 +33,7 @@ const createComment = async (req, res, next) => {
 
         if (Boolean(!is_exists)) {
 
-            return res.status(403).json(
+            return res.status(404).json(
                 utils.createJson(false, "존재하지 않는 사용자입니다."));
 
         } else {
@@ -57,6 +53,8 @@ const createComment = async (req, res, next) => {
     }
 };
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const deleteComment = async (req, res, next) => {
 
     const {
@@ -96,8 +94,8 @@ const deleteComment = async (req, res, next) => {
                 utils.createJson(false, '존재하지 않는 댓글입니다.'));
                 
         if (Result[0].fkUserId !== userId)
-            return res.status(403).json(
-                utils.createJson(false, '권한이 없는 사용자입니다.'));
+            return res.status(401).json(
+                utils.createJson(false, '해당 댓글의 삭제 권한이 없는 사용자입니다.'));
 
         const DELETE_COMMENT_BY_COMMENTID_AND_USERID = `DELETE FROM comment WHERE comment_id = ${commentId} AND fk_user_id = ${userId};`;
         const [ ResultSetHeader ] = await connection.query(DELETE_COMMENT_BY_COMMENTID_AND_USERID);
@@ -111,6 +109,8 @@ const deleteComment = async (req, res, next) => {
     }
 }
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const putComment = async (req, res, next) => {
 
     const {
@@ -138,7 +138,7 @@ const putComment = async (req, res, next) => {
         const [ [ { is_exists } ] ] = await connection.query(IS_EXISTS);
 
         if (Boolean(!is_exists))
-            return res.status(403).json(
+            return res.status(404).json(
                 utils.createJson(false, "존재하지 않는 사용자입니다."));
 
         const SELECT_COMMENT_BY_COMMENTID = `SELECT fk_user_id as fkUserId FROM comment WHERE comment_id = ${commentId};`;
@@ -149,21 +149,17 @@ const putComment = async (req, res, next) => {
                 utils.createJson(false, '존재하지 않는 댓글입니다.'));
                 
         if (Result[0].fkUserId !== userId)
-            return res.status(403).json(
-                utils.createJson(false, '권한이 없는 사용자입니다.'));
+            return res.status(401).json(
+                utils.createJson(false, '해당 댓글의 수정 권한이 없는 사용자입니다.'));
         
         const UPDATE_COMMENT = `UPDATE comment SET content = "${content}" WHERE comment_id = ${commentId};`;
 
         const [ ResultSetHeaderOfPut ] = await connection.query(UPDATE_COMMENT);
 
         if (ResultSetHeaderOfPut !== 0)
-                return res.status(201).json(
-                    utils.createJson(true, '댓글이 수정되었습니다.', { commentId, content }));
+                return res.status(200).json(
+                    utils.createJson(true, '댓글이 수정되었습니다.', { userId, commentId, content }));
 
-        // if (!commentId || content.length <= 0) return res.status(404).json(utils.createJson(false, "CommentId is not found"));
-        // const [ comment ] = await commentQuery.searchCommentQuery(commentId); // comment 작성자 { fk_user_id:  }
-        // if (userId !== comment.fk_user_id) return res.status(404).json(utils.createJson(false, "Not your comment"));
-        // const update = await commentQuery.updateCommentQuery(commentId, content);
         return res.status(200).json(utils.createJson(true, "Comment update success", update));
 
     } catch (err) {
