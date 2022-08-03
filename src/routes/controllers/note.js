@@ -4,6 +4,8 @@ import Express from 'express';
 import { JwtProvider, BcryptProvider, DatabaseProvider } from "../../modules/_.loader.js";
 import * as utils from "../../modules/utils.js";
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const postNote = async (req, res, next) => {
     
     try {
@@ -33,6 +35,8 @@ const postNote = async (req, res, next) => {
 
 };
 
+
+/** @param { Request } req @param { Response } res @param { NestFunction } next */
 const getNote = async (req, res, next) => {
 
     try {

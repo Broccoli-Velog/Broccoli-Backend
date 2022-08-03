@@ -1,6 +1,6 @@
-import { DatabaseProvider, EnvProvider, JwtProvider } from './modules/_.loader.js';
-import BcryptProvider from './modules/providers/bcrypt.provider.js';
-import App from './server.js';
+import { DatabaseProvider, EnvProvider, JwtProvider } from "./modules/_.loader.js";
+import BcryptProvider from "./modules/providers/bcrypt.provider.js";
+import App from "./server.js";
 
 
 export default (() => {

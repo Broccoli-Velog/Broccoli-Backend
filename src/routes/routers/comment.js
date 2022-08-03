@@ -1,24 +1,16 @@
 import { Router } from "express";
 
 import { tokenGuard } from "../../modules/_.loader.js";
-import * as commentController from "../controllers/comment.js";
+import { CommentController } from "../controllers/_.export.js";
 
 const commentRouter = Router();
 
 commentRouter.route('')
-    .post(tokenGuard, commentController.createComment);
+    .post(tokenGuard, CommentController.createComment);
 
 commentRouter.route('/:commentId')
-    .put(tokenGuard, commentController.putComment)
-    .delete(tokenGuard, commentController.deleteComment);
+    .put(tokenGuard, CommentController.putComment)
+    .delete(tokenGuard, CommentController.deleteComment);
 
-// commentRouter.route('/create/:noteId')
-//     .post(tokenGuard, commentController.commentCreate);
-
-// commentRouter.route("/delete/:commentId")
-//     .delete(tokenGuard, commentController.commentDelete);
-
-// commentRouter.route("/update/:commentId")
-//     .put(tokenGuard, commentController.commentUpdate);
 
 export default commentRouter;
