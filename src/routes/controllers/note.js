@@ -40,10 +40,12 @@ const getNote = async (req, res, next) => {
         const db = await new DatabaseProvider().getConnection();
         const note = await db.query(`
             SELECT * FROM note
+            LIMIT 12
         `);
-        return note;
+        return res.status(200).json(
+            utils.createJson(true, 'note 목록 보기가 완료되었습니다', note[0]));
 
-    } catch {
+    } catch (err) {
 
         console.error(err);
         return res.json(err.message);
@@ -57,22 +59,25 @@ const getNoteByNoteId = async (req, res, next) => {
     const { noteId } = req.params;
 
     try {
+        const noteDto = await Joi.object({
+            noteId : Joi.number().required()
+        }).validateAsync({ ...req.params });
 
         const db = await new DatabaseProvider().getConnection();
         const note = await db.query(`
             SELECT * FROM note N
-            WHERE N.note_id = ${note_id}
+            WHERE N.note_id = ${noteDto.noteId}  
+            LIMIT 1 
         `);
-
-        if (note.length)
+        if (note[0].length)
             return res.status(200).json(
-                utils.createJson(true, '노트 보기 요청이 성공하였습니다.', note));
+                utils.createJson(true, '노트 보기 요청이 성공하였습니다.', note[0]));
         else  
             return res.status(404).json(
-                utils.createJson(false, '존해하지 않는 글입니다.', { noteId }));
+                utils.createJson(false, '존재하지 않는 글입니다.', { noteId }));
 
 
-    } catch {
+    } catch (err) {
 
         console.error(err);
         return res.json(err.message);
