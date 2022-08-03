@@ -34,6 +34,7 @@ class App {
         this.app.use(Express.urlencoded({ extended: true }));
 
         this.app.use('/auth', authRouter);
+        this.app.use('/user', userRouter);
         this.app.use('/note', noteRouter);
         this.app.use('/comment', commentRouter);
 
