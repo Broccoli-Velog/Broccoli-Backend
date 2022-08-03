@@ -1,6 +1,7 @@
 import Joi from "joi";
 import Express from 'express';
 
+import { DatabaseProvider } from "../../modules/_.loader.js";
 import * as noteQuery from "../../database/note.js";
 import * as utils from "../../modules/utils.js";
 
@@ -13,6 +14,9 @@ const postNote = async (req, res, next) => {
             title : Joi.string().min(1).max(50).required(),
             content : Joi.string().min(1).max(255).required()
         }).validateAsync({ ...req.body });
+
+        // const connection =  await new DatabaseProvider().getConnection();
+        // const postQuery = 'INSERT INTO ~~;';
 
         const note = await noteQuery.postNoteQuery(noteDto);
         return res.status(201).json(
