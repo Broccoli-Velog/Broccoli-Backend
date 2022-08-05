@@ -3,7 +3,11 @@ DROP DATABASE IF EXISTS broccoli;
 CREATE DATABASE IF NOT EXISTS broccoli;
 USE broccoli;
 
-CREATE TABLE user (
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS note;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE IF NOT EXISTS user (
     user_id     SERIAL          NOT NULL    PRIMARY KEY,
     email       VARCHAR(40)     NOT NULL,
     nickname    VARCHAR(10)     NOT NULL,
@@ -12,7 +16,7 @@ CREATE TABLE user (
     updated_at   DATETIME       NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE note (
+CREATE TABLE IF NOT EXISTS note (
     note_id     SERIAL          NOT NULL    PRIMARY KEY,
     fk_user_id  INTEGER         NOT NULL,
     title       VARCHAR(50)     NOT NULL,
@@ -30,7 +34,7 @@ CREATE TABLE note (
     
 );
 
-CREATE TABLE comment (
+CREATE TABLE IF NOT EXISTS comment (
     comment_id  SERIAL          NOT NULL    PRIMARY KEY,
     content     VARCHAR(100)    NOT NULL,
     fk_note_id  INTEGER         NOT NULL,
