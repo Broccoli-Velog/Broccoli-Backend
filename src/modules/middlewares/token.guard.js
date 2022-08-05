@@ -24,7 +24,7 @@ const tokenGuard = (req, res, next) => {
 
         const payload = jwtProvider.verifyToken(token);
 
-        console.log(payload);
+        // console.log(payload);
         req.body.userId = +payload?.userId ?? undefined;
 
         return next();
