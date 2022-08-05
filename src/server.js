@@ -33,7 +33,7 @@ class App {
         this.app.use("/auth", AuthRouter);
         this.app.use("/user", UserRouter);
         this.app.use("/note", NoteRouter);
-        this.app.use("/comment",CommentRouter );
+        this.app.use("/comment", CommentRouter);
 
         this.app.get("*", (req, res) => {
             return res.json("hello")
